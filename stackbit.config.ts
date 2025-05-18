@@ -6,10 +6,11 @@ export default defineStackbitConfig({
   ssgName: "custom",
   nodeVersion: "18",
   devCommand: "",
+
   contentSources: [
     new GitContentSource({
-      rootPath: __dirname + "/content",
-      contentDirs: ["."],
+      rootPath: __dirname,
+      contentDirs: ["content"],
       models: [
         {
           name: "homepage",
@@ -34,6 +35,7 @@ export default defineStackbitConfig({
       ]
     })
   ],
+
   pages: [
     {
       urlPath: "/",
