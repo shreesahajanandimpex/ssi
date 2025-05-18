@@ -3,22 +3,20 @@ import { GitContentSource } from "@stackbit/cms-git";
 
 export default defineStackbitConfig({
   stackbitVersion: "~0.6.0",
-  ssgName: "custom", // "custom" since you aren't using a framework like Next.js
-  nodeVersion: "18", // Match Netlify runtime, adjust if different
-
-  // Your local dev command (if any). Leave empty if you are using static files.
+  ssgName: "custom",
+  nodeVersion: "18",
   devCommand: "",
 
   contentSources: [
     new GitContentSource({
-      rootPath: __dirname,        // Root path of your repo
-      contentDirs: ["."],         // Points to root, adjust if you have a content folder
+      rootPath: __dirname,
+      contentDirs: ["."],
       models: [
         {
           name: "homepage",
           type: "page",
           label: "Home Page",
-          filePath: "index.html",  // Static HTML file to edit
+          filePath: "index.html",
           fields: [
             { name: "siteTitle", type: "string", label: "Site Title" },
             { name: "companyName", type: "string", label: "Company Name" },
@@ -36,5 +34,14 @@ export default defineStackbitConfig({
         },
       ],
     }),
+  ],
+
+  // This defines what shows up in the Visual Editor's sitemap
+  pages: [
+    {
+      urlPath: "/",
+      contentFile: "index.html",
+      modelName: "homepage",
+    },
   ],
 });
